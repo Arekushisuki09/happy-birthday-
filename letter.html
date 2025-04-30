@@ -1,122 +1,122 @@
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=DM+Serif+Display:ital@0;1&family=Dancing+Script:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="valentine-confession.css">
-        <style>
-            body {
-                background-color: #c9b2eb;
-                transition: background-color 0.6s ease;
-            }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valentine Confession</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #c9b2eb;
+      margin: 0;
+      font-family: 'Cinzel', serif;
+      transition: background-color 0.6s ease;
+    }
 
-            body.confession-revealed {
-                background-color: #c9b2eb;
-            }
+    .container {
+      text-align: center;
+      padding-top: 50px;
+    }
 
-            .cute-box {
-                border: 2px solid pink;
-                border-radius: 15px;
-                padding: 20px;
-                box-shadow: 0 0 15px pink;
-                margin: 20px auto;
-                width: 80%;
-            }
+    .instruction {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #5e4a88;
+    }
 
-            .cute-button {
-                background-color: pink;
-                color: white;
-                border: none;
-                border-radius: 50px;
-                padding: 12px 30px;
-                font-size: 18px;
-                cursor: pointer;
-                box-shadow: 0 0 10px pink;
-                transition: 0.3s;
-            }
+    .heart {
+      width: 200px;
+      margin: 0 auto;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
 
-            .cute-button:hover {
-                background-color: hotpink;
-                box-shadow: 0 0 20px hotpink;
-            }
+    .heart img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
-            .side-by-side {
-                display: flex;
-                justify-content: center;
-                align-items: flex-start;
-                gap: 30px;
-                flex-wrap: wrap;
-                margin: 20px;
-            }
+    /* Animation when heart is clicked */
+    #messageState:checked + label .heart {
+      transform: scale(1.1);
+    }
 
-            .message {
-                max-width: 600px;
-            }
+    .message {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #fff0f8;
+      border-radius: 20px;
+      border: 2px solid pink;
+      box-shadow: 0 0 15px pink;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
 
-            .button-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-        </style>
-        <title>Valentine Confession</title>
-    </head>
-    <body>
-        <p class="instruction">Click the heart!</p>
-        <div class="container">
-            <label>
-                <div class="heart">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg"></img>
-                </div>
-                <input id="messageState" type="checkbox" style="display:none"/>
-            </label>
+    body.confession-revealed .message {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-            <div class="side-by-side">
-                <div class="message">
-                    <h1 style="font-family: Cinzel, serif; font-size: 40px; letter-spacing: 1.2px;">Dear Crush,</h1>
-                    <p> 
-                        <span>
-                            &emsp; I've been keeping this in for a while, but I think Valentine's Day is the perfect time to say it—you’re the reason my days feel brighter. Every little moment with you means more than I can put into words. Your smile, your laughter, the way you make everything feel lighter—it all makes my heart race in the best way possible.
-                        </span>
-                        <br> <br>
-                        <span>
-                            &emsp; So, here it is… I like you, a lot. Maybe even love. Would you be my Valentine? No matter your answer, I just wanted you to know how special you are to me. You’ve filled my heart with warmth in ways I never expected, and for that, I’m grateful. But if you say yes, I promise to make every day feel like Valentine’s Day for you—to cherish you, to make you smile, and to remind you just how much you mean to me.
-                        
-                        </span>      
-                    </p>
-                    <br>
-                    <div class="sincere">
-                        <p style="font-weight: bold;">With Love,</p>
-                        <p>Your Admirer</p>
-                    </div>
-                </div>
-                <div class="button-container">
-                    <button class="cute-button" onclick="openWebsite()">Click Me after the letter ♡</button>
-                </div>
-            </div>
-        </div>
-        
-        <script src="jquery.js"></script>
-        <script src="jquery2.1.js"></script>
-        <script defer src="valentine-confession.js"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                const checkbox = document.getElementById("messageState");
+    .cute-button {
+      background-color: pink;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 0 10px pink;
+      transition: 0.3s;
+      margin-top: 20px;
+    }
 
-                checkbox.addEventListener("change", () => {
-                    if (checkbox.checked) {
-                        document.body.classList.add("confession-revealed");
-                    } else {
-                        document.body.classList.remove("confession-revealed");
-                    }
-                });
-            });
+    .cute-button:hover {
+      background-color: hotpink;
+      box-shadow: 0 0 20px hotpink;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="instruction">Click the heart!</p>
 
-            function openWebsite() {
-                window.open("https://example.com", "_blank"); // Replace with your link
-            }
-        </script>
-    </body>
+    <!-- Hidden checkbox and label/heart -->
+    <input type="checkbox" id="messageState" style="display: none;">
+    <label for="messageState">
+      <div class="heart">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg" alt="Heart" />
+      </div>
+    </label>
+
+    <!-- Love letter -->
+    <div class="message">
+      <h1>Dear Crush,</h1>
+      <p>
+        I've been keeping this in for a while, but I think Valentine's Day is the perfect time to say it—you’re the reason my days feel brighter. Every little moment with you means more than I can put into words. Your smile, your laughter, the way you make everything feel lighter—it all makes my heart race in the best way possible.
+      </p>
+      <p>
+        So, here it is… I like you, a lot. Maybe even love. Would you be my Valentine? No matter your answer, I just wanted you to know how special you are to me. You’ve filled my heart with warmth in ways I never expected, and for that, I’m grateful. But if you say yes, I promise to make every day feel like Valentine’s Day for you—to cherish you, to make you smile, and to remind you just how much you mean to me.
+      </p>
+      <p><strong>With Love,</strong><br>Your Admirer</p>
+      <button class="cute-button" onclick="openWebsite()">Click Me after the letter ♡</button>
+    </div>
+  </div>
+
+  <script>
+    const checkbox = document.getElementById("messageState");
+    checkbox.addEventListener("change", () => {
+      document.body.classList.toggle("confession-revealed", checkbox.checked);
+    });
+
+    function openWebsite() {
+      window.open("https://example.com", "_blank"); // Replace with your actual link
+    }
+  </script>
+</body>
 </html>
+
