@@ -57,7 +57,7 @@
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    body.confession-revealed .message {
+    .message.revealed {
       opacity: 1;
       transform: translateY(0);
     }
@@ -108,10 +108,11 @@
 
   <script>
     const checkbox = document.getElementById("messageState");
+    const message = document.querySelector(".message");
+
     checkbox.addEventListener("change", () => {
-      document.body.classList.toggle("confession-revealed", checkbox.checked);
-    }
+      message.classList.toggle("revealed", checkbox.checked);
+    });
   </script>
 </body>
 </html>
-
