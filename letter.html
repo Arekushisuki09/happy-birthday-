@@ -39,11 +39,6 @@
       display: block;
     }
 
-    /* Animation when heart is clicked */
-    #messageState:checked + label .heart {
-      transform: scale(1.1);
-    }
-
     .message {
       max-width: 600px;
       margin: 40px auto;
@@ -55,11 +50,13 @@
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
     }
 
     .message.revealed {
       opacity: 1;
       transform: translateY(0);
+      pointer-events: auto;
     }
 
     .cute-button {
@@ -85,16 +82,13 @@
   <div class="container">
     <p class="instruction">Click the heart!</p>
 
-    <!-- Hidden checkbox and label/heart -->
-    <input type="checkbox" id="messageState" style="display: none;">
-    <label for="messageState">
-      <div class="heart">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg" alt="Heart" />
-      </div>
-    </label>
+    <!-- Heart label -->
+    <div class="heart" id="heart">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg" alt="Heart" />
+    </div>
 
     <!-- Love letter -->
-    <div class="message">
+    <div class="message" id="messageBox">
       <h1>Dear Crush,</h1>
       <p>
         I've been keeping this in for a while, but I think Valentine's Day is the perfect time to say it—you’re the reason my days feel brighter. Every little moment with you means more than I can put into words. Your smile, your laughter, the way you make everything feel lighter—it all makes my heart race in the best way possible.
@@ -107,11 +101,15 @@
   </div>
 
   <script>
-    const checkbox = document.getElementById("messageState");
-    const message = document.querySelector(".message");
+    const heart = document.getElementById("heart");
+    const message = document.getElementById("messageBox");
 
-    checkbox.addEventListener("change", () => {
-      message.classList.toggle("revealed", checkbox.checked);
+    heart.addEventListener("click", () => {
+      message.classList.toggle("revealed");
+      heart.style.transform = "scale(1.1)";
+      setTimeout(() => {
+        heart.style.transform = "scale(1)";
+      }, 300);
     });
   </script>
 </body>
