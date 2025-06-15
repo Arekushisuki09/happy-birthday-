@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Certificate Reveal</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e1bee7; /* light purple */
+      overflow: hidden;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      font-weight: bold;
+      background-color: #ba68c8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00000055;
+      z-index: 1000;
+    }
+
+    #start-screen, #loader {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #4e2a84;
+      font-size: 2em;
+      text-align: center;
+    }
+
+    #start-screen button.start-button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 1em;
+      font-weight: bold;
+      border: none;
+      background-color: #ba68c8;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ba68c8;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    #loader {
+      display: none;
+      animation: pulse 1s infinite;
+    }
+
+    #certificate-container {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #f3e5f5, #d1c4e9);
+    }
+
+    #certificate-container img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 10px dark purple;
+      border-radius: 20px;
+      box-shadow: 0 0 30px gold;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Back button (always visible) -->
+<button class="back-button" onclick="location.href='birthday.html'">← Back</button>
+
+<!-- Start screen -->
+<div id="start-screen">
+  🎂 Happy Birthday! 🎂<br>
+  <button class="start-button" onclick="startSurprise()">Click to Start</button>
+</div>
+
+<!-- Loading screen -->
+<div id="loader">
+  🎉 Happy Birthday baby! 🎉<br>
+  Get ready...
+</div>
+
+<!-- Certificate reveal -->
+<div id="certificate-container">
+  <img src="certificate.png" alt="Birthday Certificate">
+</div>
+
+<!-- Audio -->
+<audio id="bday-audio" src="https://www.orangefreesounds.com/wp-content/uploads/2016/06/Happy-birthday-song.mp3" preload="auto"></audio>
+
+<script>
+  const startScreen = document.getElementById('start-screen');
+  const loader = document.getElementById('loader');
+  const cert = document.getElementById('certificate-container');
+  const audio = document.getElementById('bday-audio');
+
+  function startSurprise() {
+    startScreen.style.display = 'none';
+    loader.style.display = 'flex';
+
+    audio.play().then(() => {
+      // Reveal certificate at ~15 seconds
+      setTimeout(() => {
+        loader.style.display = 'none';
+        cert.style.display = 'flex';
+      }, 15000);
+    }).catch((e) => {
+      loader.innerHTML = "Please allow audio to play and refresh the page!";
+      console.error(e);
+    });
+  }
+</script>
+
+</body>
+</html>
+
+
+<!-- Start screen -->
+<div id="start-screen">
+  <button class="back-button" onclick="location.href='birthday.html'">← Back</button>
+  🎂 Happy Birthday! 🎂<br>
+  <button class="start-button" onclick="startSurprise()">Click to Start</button>
+</div>
+
+<!-- Loading screen -->
+<div id="loader">
+  🎉 Happy Birthday baby! 🎉<br>
+  Get ready...
+</div>
+
+<!-- Certificate reveal -->
+<div id="certificate-container">
+  <img src="certificate.png" alt="Birthday Certificate">
+</div>
+
+<!-- Happy Birthday song -->
+<audio id="bday-audio" src="https://www.orangefreesounds.com/wp-content/uploads/2016/06/Happy-birthday-song.mp3" preload="auto"></audio>
+
+<script>
+  const startScreen = document.getElementById('start-screen');
+  const loader = document.getElementById('loader');
+  const cert = document.getElementById('certificate-container');
+  const audio = document.getElementById('bday-audio');
+
+  function startSurprise() {
+    startScreen.style.display = 'none';
+    loader.style.display = 'flex';
+
+    audio.play().then(() => {
+      // Reveal certificate after ~15 seconds
+      setTimeout(() => {
+        loader.style.display = 'none';
+        cert.style.display = 'flex';
+      }, 15000);
+    }).catch((e) => {
+      loader.innerHTML = "Please allow audio to play and refresh the page!";
+      console.error(e);
+    });
+  }
+</script>
+
+</body>
+</html>
